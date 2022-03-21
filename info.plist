@@ -7,32 +7,28 @@
 	<key>category</key>
 	<string>Productivity</string>
 	<key>connections</key>
-	<dict>
-		<key>07ECEF9D-1B67-4591-93E7-01681F2EE3E0</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>9220773E-8625-44F5-B379-DF742B6F1D45</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-			</dict>
-		</array>
-	</dict>
+	<dict/>
 	<key>createdby</key>
 	<string>Kevin McKenzie</string>
 	<key>description</key>
-	<string>Various things useful for working with "Julian" (day of the year, counting from January 1st) dates, as used by mainframes</string>
+	<string>Various things useful for working with "Julian" (day of the year, counting from January 1st) dates, as used by mainframes&lt;</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
-	<string>"Julian" date functionality</string>
+	<string>"Julian" Date</string>
 	<key>objects</key>
 	<array>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -40,15 +36,21 @@
 				<key>keyword</key>
 				<string>jd</string>
 				<key>queuedelaycustom</key>
-				<integer>1</integer>
+				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
-				<false/>
+				<true/>
 				<key>queuedelaymode</key>
 				<integer>0</integer>
 				<key>queuemode</key>
 				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
 				<key>script</key>
-				<string>python from_juldate.py "{query}"</string>
+				<string>python3 julian_date.py $1</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Enter date to convert from/to (enter for today's date in Julian)</string>
 				<key>title</key>
@@ -61,42 +63,28 @@
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>07ECEF9D-1B67-4591-93E7-01681F2EE3E0</string>
+			<string>5C0FDDE9-B647-4F84-8D44-97B2E5D3A07E</string>
 			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>autopaste</key>
-				<false/>
-				<key>clipboardtext</key>
-				<string>{query}</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.clipboard</string>
-			<key>uid</key>
-			<string>9220773E-8625-44F5-B379-DF742B6F1D45</string>
-			<key>version</key>
-			<integer>0</integer>
+			<integer>3</integer>
 		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
 	<key>uidata</key>
 	<dict>
-		<key>07ECEF9D-1B67-4591-93E7-01681F2EE3E0</key>
+		<key>5C0FDDE9-B647-4F84-8D44-97B2E5D3A07E</key>
 		<dict>
+			<key>xpos</key>
+			<integer>185</integer>
 			<key>ypos</key>
-			<real>10</real>
-		</dict>
-		<key>9220773E-8625-44F5-B379-DF742B6F1D45</key>
-		<dict>
-			<key>ypos</key>
-			<real>10</real>
+			<integer>175</integer>
 		</dict>
 	</dict>
+	<key>variablesdontexport</key>
+	<array/>
+	<key>version</key>
+	<string>2.0.0</string>
 	<key>webaddress</key>
-	<string></string>
+	<string>https://github.com/Tam-Lin/julian_date</string>
 </dict>
 </plist>

@@ -1,13 +1,22 @@
+#!/usr/bin/python3
+# encoding: utf-8
+
 import sys
-from workflow import Workflow, ICON_WEB, web
+from workflow import Workflow3, ICON_WEB
 from datetime import date, timedelta, datetime
 import operator
-from dateutil import parser
 
-ops = { "+": operator.add, "-": operator.sub }
+ops = {"+": operator.add, "-": operator.sub}
 
+log = None
 
 def main(wf):
+
+	log.debug("Starting")
+
+	log.debug(wf.args)
+
+	from dateutil import parser
 
 	args = wf.args
 
@@ -18,14 +27,13 @@ def main(wf):
 	yyyyddd = str(today.tm_year) + ddd
 	yyddd = str(today.tm_year)[2:] + ddd
 
-	if len(args) == False or len(args[0]) == 0 or (len(args) == 1 and args[0] in ops):
+	if len(args) == 0 or len(args[0]) == 0 or (len(args) == 1 and args[0] in ops):
 	#No argument provided
 	#today's date in Julian
 
-
-		wf.add_item(title = yyyyddd, subtitle="Today's date -> yyyyddd", valid=True, arg = yyyyddd)
-		wf.add_item(title = yyddd, subtitle="Today's date -> yyddd", valid=True, arg = yyddd)
-		wf.add_item(title= ddd, subtitle="Today's date -> ddd", valid=True, arg = ddd )
+		wf.add_item(title=yyyyddd, subtitle="Today's date -> yyyyddd", valid=True, arg=yyyyddd)
+		wf.add_item(title=yyddd, subtitle="Today's date -> yyddd", valid=True, arg=yyddd)
+		wf.add_item(title=ddd, subtitle="Today's date -> ddd", valid=True, arg=ddd )
 		wf.send_feedback()
 
 	else:
@@ -40,7 +48,6 @@ def main(wf):
 
 					year = date.today().year
 					day_of_year = int(date_input[:])
-
 
 				elif len(date_input) == 4:  # assume format is yddd
 					year = int(date_input[0:1])
@@ -66,7 +73,6 @@ def main(wf):
 
 					day_of_year = int(date_input[3:])
 
-
 				elif len(date_input) == 7:  # assume format is yyyyddd
 					year = int(date_input[0:4])
 					day_of_year = int(date_input[4:])
@@ -82,7 +88,6 @@ def main(wf):
 					wf.send_feedback()
 
 			elif args[0][0] in ops:
-
 				#See http://stackoverflow.com/questions/1740726/python-turn-string-into-operator
 				date_to_return = ops[args[0][0]](date.today(), timedelta(days=int(args[0][1:])))
 
@@ -93,10 +98,12 @@ def main(wf):
 
 			elif ('-' in args[0]) or ('/' in args[0]):
 
+				input_date_object = None
+
 				try:
 					input_date_object = parser.parse(args[0])
 				except:
-					wf.add_item(title = "Invalid entry", valid=False)
+					wf.add_item(title="Invalid entry", valid=False)
 					wf.send_feedback()
 
 				yyyyddd = str(input_date_object.timetuple().tm_year) + str(input_date_object.timetuple().tm_yday).zfill(3)
@@ -105,7 +112,11 @@ def main(wf):
 				wf.send_feedback()
 
 
-
-if __name__ == u"__main__":
-	wf = Workflow()
+if __name__ == "__main__":
+	# Create a global `Workflow3` object
+	wf = Workflow3()
+	# Call your entry function via `Workflow3.run()` to enable its
+	# helper functions, like exception catching, ARGV normalization,
+	# magic arguments etc.
+	log = wf.logger
 	sys.exit(wf.run(main))
